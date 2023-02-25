@@ -16,15 +16,6 @@ class _AddNoteState extends State<AddNote> {
 
   sqL mysql=sqL();
 
-  pr()async{
-
-    var re=await mysql.getdata("select * from note");
-    // print(re[0]['title']);
-    // return re;
-    print(re);
-
-  }
-
   TextEditingController title=TextEditingController();
   TextEditingController body=TextEditingController();
   TextEditingController color=TextEditingController();
@@ -45,7 +36,7 @@ class _AddNoteState extends State<AddNote> {
         TextFormField(controller:title),
         TextFormField(controller:body),
         TextFormField(controller:color),
-        
+      
         TextButton(onPressed:()async{
         var repos=await mysql.insertdata
         (
@@ -55,19 +46,10 @@ class _AddNoteState extends State<AddNote> {
         '''
         );
 
-      print(pr());
-      // pr();
-      
-      print("################respnse%%%%%%%%%%%%%%%%");
-      // print(repos);
       if(repos>1){
-  Navigator.pushAndRemoveUntil(context,MaterialPageRoute(builder: ((context) =>Homepage())), (route) => false);
-      }else{
-        print("there is error");
+        Navigator.pushAndRemoveUntil(context,MaterialPageRoute(builder: ((context) =>const Homepage())), (route) => false);
       }
-        }, child:Text("add note"))
-        
-      
+      }, child:const Text("add note"))
         ])
         
         )),

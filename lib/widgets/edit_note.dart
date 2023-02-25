@@ -12,12 +12,8 @@ String id;
 
 
   @override
-  
   State<EditNote> createState() => _EditNoteState();
 }
-
-
-
 class _EditNoteState extends State<EditNote> {
 
   sqL mysql=sqL();
@@ -61,7 +57,7 @@ class _EditNoteState extends State<EditNote> {
            if(re>0){
             Navigator.popAndPushNamed(context, 'homepage');
            }
-          }, child:Text("edit note"))
+          }, child:const Text("edit note"))
           
         
           ]),

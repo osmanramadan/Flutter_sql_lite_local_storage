@@ -1,8 +1,9 @@
-
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
-/////////////          //////////////
-class sqL{
+
+
+// ignore: camel_case_types
+class sqL {
 
 static Database? _db;
 
@@ -14,23 +15,22 @@ if(_db==null){
   return _db;
 }
 }
+/////////////////////////////////////////////////////////////////////////////   //// /////  ///// ///  ///
 initialdb()async{
   String databasepath=await getDatabasesPath();
   String path=join(databasepath,"osman.db");
   Database mydb=await openDatabase(path,onCreate: _create,version:1,onUpgrade:_upcreate);
   return mydb;
 }
+
+
 Future<Database?>_upcreate(Database db,int version,int new_version)async{
-// db.execute("alter table note add column string not null");
+
 }
-// Batch batch= Batch();
 
-_create(Database db,int version)async{
-
-  // Batch batch=db.batch();
-  // batch.execute(sql_code);
+_create(Database db,int version)async{                        
 await db.execute(
-'''
+'''                                     
 create table "note"(
   'id' integer  not null primary key AUTOINCREMENT ,
   'body'  string not null,
@@ -41,31 +41,33 @@ create table "note"(
 );
 }
 
-getdata(String sql_q)async{
+getdata(String sqlQ)async{
 Database? mydb=await db;
-var  reponse=await mydb!.rawQuery(sql_q);
+var  reponse=await mydb!.rawQuery(sqlQ);
 return reponse;
 }
-updatedata(String sql_q)async{
+
+//////////////////////////////
+updatedata(String sqlQ)async{
 Database? mydb=await db;
-var  reponse=await mydb!.rawUpdate(sql_q);
+var  reponse=await mydb!.rawUpdate(sqlQ);
 return reponse;
 }
-insertdata(String sql_q)async{
+insertdata(String sqlQ)async{
 Database? mydb=await db;
-var  reponse=await mydb!.rawInsert(sql_q);
+var  reponse=await mydb!.rawInsert(sqlQ);
 return reponse;
 }
-deletdata(String sql_q)async{
+deletdata(String sqlQ)async{
 Database? mydb=await db;
-var  reponse=await mydb!.rawDelete(sql_q);
+var  reponse=await mydb!.rawDelete(sqlQ);
 return reponse;
 }
 
 delectdb()async{
   String databasepath=await getDatabasesPath();
   String path=join(databasepath,"osman.db");
-  // Database mydb=await openDatabase(path,onCreate: _create,version: 6,onUpgrade:_upcreate);
+  
   return deleteDatabase(path);
 }
 
